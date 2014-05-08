@@ -3,28 +3,29 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="263" key="DIALOG_WIDTH"/>
 		<item value="72" key="DIALOG_Y_ORIGIN"/>
-		<item value="399" key="DIALOG_HEIGHT"/>
 		<item value="1022" key="DIALOG_X_ORIGIN"/>
+		<item value="399" key="DIALOG_HEIGHT"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="mAdapter" key="selection"/>
+		<item value="" key="selection"/>
 		<list key="findhistory">
-			<item value="mAdapter"/>
+			<item value="menu"/>
+			<item value="damageList"/>
+			<item value="mCategoryDamage"/>
 			<item value="mDamages"/>
+			<item value="JSON"/>
+			<item value="mAdapter"/>
 			<item value="KEY"/>
 			<item value="intent"/>
-			<item value=".getText().toEditText();"/>
-			<item value="String"/>
-			<item value="FooException"/>
-			<item value="temp"/>
 		</list>
 		<list key="replacehistory">
+			<item value="mCategoryDamages"/>
 			<item value=";"/>
 			<item value="EditText"/>
 			<item value="InputException"/>
