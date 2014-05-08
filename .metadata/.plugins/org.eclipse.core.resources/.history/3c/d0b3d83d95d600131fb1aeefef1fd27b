@@ -8,9 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,7 +15,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class CreateRCR extends Activity {
 	private Spinner mResHallSpinner;
@@ -105,21 +101,5 @@ public class CreateRCR extends Activity {
 			//TODO add the damages to the json object and send that somewhere
 		}
 	}
-	
-	public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return true;
-    }
-    
-    public boolean onOptionsItemSelected(MenuItem item) {
-    	switch (item.getItemId()) {
-			case R.id.toast:
-				Toast.makeText(getBaseContext(), R.string.my_name, Toast.LENGTH_LONG).show();
-			  return true;
-			default:
-			  return super.onOptionsItemSelected(item);
-		}
-    }
 
 }

@@ -22,10 +22,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toast;
 
 public class RCRForm extends FragmentActivity {
 	private RCRPageAdapter mPageAdapter;
@@ -111,20 +107,4 @@ public class RCRForm extends FragmentActivity {
 		}
 		
 	}
-	
-	public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return true;
-    }
-    
-    public boolean onOptionsItemSelected(MenuItem item) {
-    	switch (item.getItemId()) {
-			case R.id.toast:
-				Toast.makeText(getBaseContext(), R.string.my_name, Toast.LENGTH_LONG).show();
-			  return true;
-			default:
-			  return super.onOptionsItemSelected(item);
-		}
-    }
 }
