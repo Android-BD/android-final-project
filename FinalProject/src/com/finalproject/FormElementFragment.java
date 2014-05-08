@@ -15,6 +15,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -58,7 +61,9 @@ public class FormElementFragment extends Fragment {
 		ListView damageList = (ListView) v.findViewById(R.id.damage_list);
 
 		// Adding items to listview
-		mAdapter = new DamageAdapter(getActivity(), mCatDamages);
+		
+		//mAdapter = new DamageAdapter(getActivity(), mCatDamages);
+		mAdapter = new DamageAdapter(getActivity(),mDamages);
 		damageList.setAdapter(mAdapter);
 		
 		
@@ -111,11 +116,10 @@ public class FormElementFragment extends Fragment {
 			damageDescription = data.getStringExtra(DamageInput.DAMAGE_DESCRIPTION_KEY);
 			Damage temp = new Damage(category, damageName, damageDescription);
 			mDamages.add(temp);
-			mCatDamages.add(temp);
+			//mCatDamages.add(temp);
 			Log.d("LWO","Damage: "+temp.CATEGORY+" "+temp.NAME+" "+temp.DESCRIPTION);
 			Log.d("LWO","Number of Damages: "+mDamages.size());
 			//mAdapter.getFilter().filter(category);
-			mAdapter.notifyDataSetChanged();
 		}
 	}
 	
@@ -129,79 +133,94 @@ public class FormElementFragment extends Fragment {
 		return catDamage;
 	}
 	
-	public class DamageAdapter extends ArrayAdapter<Damage> {
-
-		public DamageAdapter(Context context, ArrayList<Damage> damages) {
-			super(context, android.R.layout.simple_list_item_1, android.R.id.text1, damages);
-		}
-	}
-	
-//	public class DamageAdapter extends ArrayAdapter<Damage> implements Filterable {
-//		//private ArrayList<Damage> mCategoryDamages;
-//		//private Filter mFilter; 	
-//		
+//	public class DamageAdapter extends ArrayAdapter<Damage> {
+//
 //		public DamageAdapter(Context context, ArrayList<Damage> damages) {
 //			super(context, android.R.layout.simple_list_item_1, android.R.id.text1, damages);
-//			//mCategoryDamages = new ArrayList<Damage>();
-//			Log.d("LWO","adapter constructor");
 //		}
+//	}
+	
+	public class DamageAdapter extends ArrayAdapter<Damage> implements Filterable {
+		private ArrayList<Damage> mCategoryDamages;	
 		
-//		@Override
-//		public int getCount() {
-//			return mCategoryDamages.size();
-//		}
-//		
-//		@Override
-//		public Damage getItem(int position) {
-//			return mCategoryDamages.get(position);
-//		}
-//		
-//		public Filter getFilter() {
-//			if (mFilter == null) {
-//				mFilter = new CustomFilter();
-//			}
-//			return mFilter;
-//		}
-//		
-//		@Override
-//		public View getView(final int position, View convertView, ViewGroup parent) {
-//			Log.d("LWO","getView");
-//			return super.getView(position, convertView, parent);
-//		}
-//		
-//		@Override
-//		public void notifyDataSetChanged() {
-//			super.notifyDataSetChanged();
-//		}
-//		
-//		@SuppressLint("DefaultLocale")
-//		private class CustomFilter extends Filter {
-//			
-//			@Override
-//			protected FilterResults performFiltering(CharSequence constraint) {
-//				
-//				FilterResults results = new FilterResults();
-//				
-//				constraint = constraint.toString().toLowerCase();
-//				for (int i = 0; i < mDamages.size(); i++) {
-//					if (mDamages.get(i).toString().toLowerCase().equals(constraint)) {
-//						mCategoryDamages.add(mDamages.get(i));
-//					}
-//				}
-//				
-//				results.count = mCategoryDamages.size();
-//				results.values = mCategoryDamages;
-//				
-//				return results;
-//			}
-//			
-//			@SuppressWarnings("unckecked")
-//			@Override
-//			protected void publishResults(CharSequence constraint, FilterResults results) {
-//				//mCategoryDamages = (ArrayList<Damage>) results.values;
-//				notifyDataSetChanged();
-//			}
-//		}
+		public DamageAdapter(Context context, ArrayList<Damage> damages) {
+			super(context, android.R.layout.simple_list_item_1, android.R.id.text1);
+			mCategoryDamages = damages;
+			Log.d("LWO","adapter constructor");
+		}
+		
+		@Override
+		public int getCount() {
+			Log.d("LWO", ""+mCategoryDamages.size());
+			return mCategoryDamages.size();
+		}
+		
+		@Override
+		public Damage getItem(int position) {
+			Log.d("LWO","getItem: " + mCategoryDamages.get(position).toString());
+			return mCategoryDamages.get(position);
+		}
+		
+		@Override
+		public View getView(final int position, View convertView, ViewGroup parent) {
+			View view = null;
+			LayoutInflater inflater = LayoutInflater.from(getActivity());
+			
+			if (convertView == null) {
+				view = inflater.inflate(android.R.layout.simple_list_item_1, null);
+			} else {
+				view = convertView;
+			}
+			
+			EditText text = (EditText) view.findViewById(android.R.id.text1);
+			text.setText(mCategoryDamages.get(position).NAME);
+			
+			return view;
+		}
+		
+		public Filter getFilter() {
+			Log.d("LWO","getFilter");
+			
+			Filter filter = new Filter() {
+				@SuppressWarnings("unchecked")
+				@Override
+				protected void publishResults(CharSequence constraint, FilterResults results) {
+					Log.d("LWO","Publish results");
+					mCategoryDamages = (ArrayList<Damage>) results.values;
+					notifyDataSetChanged();
+				}
+				
+				@Override
+				protected FilterResults performFiltering(CharSequence constraint) {
+					Log.d("LWO","Custom filter");
+					
+					FilterResults results = new FilterResults();
+	                ArrayList<Damage> FilteredArrayNames = new ArrayList<Damage>();
+					
+					constraint = constraint.toString();
+					for (int i = 0; i < mDamages.size(); i++) {
+						if (mDamages.get(i).NAME.equals(constraint)) {
+							FilteredArrayNames.add(mDamages.get(i));
+							Log.d("LWO","Added "+mDamages.get(i).NAME);
+						}
+					}
+					
+					results.count = FilteredArrayNames.size();
+					results.values = FilteredArrayNames;
+					
+					return results;
+				}
+			};
+			
+			return filter;
+		}
+		
+		@Override
+		public void notifyDataSetChanged() {
+			Log.d("LWO","data set changed notification");
+			super.notifyDataSetChanged();
+		}
+	}
 		
 	
 	// Damage "struct"
