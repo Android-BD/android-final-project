@@ -1,0 +1,80 @@
+package com.finalproject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+
+public class CreateRCR extends Activity {
+	private Spinner mResHallSpinner;
+	private Button mCreateButton;
+	private Context mContext;
+	private JSONObject mInputData;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.create_rcr);
+	    mContext = this;
+	    mInputData = new JSONObject();
+	    
+	    // Fill spinner with data
+	    mResHallSpinner = (Spinner) findViewById(R.id.residence_hall_selector);
+		ArrayAdapter<CharSequence> resHallAdapter = ArrayAdapter.createFromResource(this, R.array.residence_halls, android.R.layout.simple_spinner_dropdown_item);
+		resHallAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		mResHallSpinner.setAdapter(resHallAdapter);
+		
+		// Create button click listener
+		mCreateButton = (Button) findViewById(R.id.create_button);
+		mCreateButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Log.d("LWO","New clicked");
+				Intent intent = new Intent(mContext, RCRForm.class);
+				try {
+					EditText ra_fName = (EditText) findViewById(R.id.ra_name_first_selector);
+					if (ra_fName.getText().toString().length() ==0) {
+						Log.d("LWO","Found input problem");
+						ra_fName.setError("RA first name is required");
+						throw new InputException();
+					}
+					mInputData.put("ra_fname",((EditText)findViewById(R.id.ra_name_first_selector)).getText());
+					mInputData.put("ra_lname",((EditText)findViewById(R.id.ra_name_last_selector)).getText());
+					mInputData.put(("resident_fName"), ((EditText)findViewById(R.id.resident_name_first_selector)).getText());
+					mInputData.put("resident_lname",((EditText)findViewById(R.id.resident_name_last_selector)).getText());
+					mInputData.put("room_number", ((EditText)findViewById(R.id.room_number_selector)).getText());
+					mInputData.put("residence_hall", ((Spinner)findViewById(R.id.residence_hall_selector)).getSelectedItem().toString());
+					int RBID = ((RadioGroup)findViewById(R.id.room_side_group)).getCheckedRadioButtonId();
+					mInputData.put("room_side", ((RadioButton)findViewById(RBID)).getText());
+				} catch (JSONException e) {
+					Log.d("LWO","JSON Excpetion");
+					e.printStackTrace();
+				} catch (InputException e) {
+					Log.d("LWO","Input problem");
+					e.printStackTrace();
+				}
+				//TODO validate form input and save someway...
+				startActivity(intent);
+			}
+		});
+	}
+	
+	public class InputException extends Exception {
+		public InputException() { super(); }
+		public InputException(String message) { super(message); }
+		public InputException(String message, Throwable cause) { super(message, cause); }
+		public InputException(Throwable cause) { super(cause); }
+	}
+
+}

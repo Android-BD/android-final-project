@@ -1,0 +1,62 @@
+[
+	{
+		"title":"Door and Lock",
+		"description":"Interior/exterior surface, door, closure, lock works"
+	},
+	{
+		"title":"Closet",
+		"description":"Door, towel bar, rods, coat hooks, surfaces"
+	},
+	{
+		"title":"Dresser",
+		"description":"Top, pulls, drawer, interior"
+	},
+	{
+		"title":"Bed",
+		"description":"Mattress, springs, bed ends (tears, stains)"
+	},
+	{
+		"title":"Desk",
+		"description":"Desk top, drawers"
+	},
+	{
+		"title":"Desk Chair",
+		"description":"Legs, back, seat"
+	},
+	{
+		"title":"Windows/Blinds",
+		"description":"Window panes, window screen, blind works"
+	},
+	{
+		"title":"Heating/Air Conditioner",
+		"description":"Sensor/thermostat on wall, vents, pipes, insulation"
+	},
+	{
+		"title":"Walls",
+		"description":"Jacks, outlets, paint color (holes, scratches, hooks)"
+	},
+	{
+		"title":"Floor",
+		"description":"Carpet, tile (stained, torn)"
+	},
+	{
+		"title":"Ceiling",
+		"description":"Plaster/tile (stained holes). Light fixtures, smoke detectors, strobe, horn"
+	},
+	{
+		"title":"Wastebasket/Recycle Bin",
+		"description":"Missing, cracked"
+	},
+	{
+		"title":"Bathroom (Suites only)",
+		"description":"Fixtures shower curtain, floor, towel bar, vanity, etc."
+	},
+	{
+		"title":"Study/Entry",
+		"description":"Door, walls, floor covering, window, blinds, ceiling, bookshelves, light fixtures"
+	},
+	{
+		"title":"Other",
+		"description":"Any other damages"
+	}
+]

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	    
+    <EditText android:id="@+id/ra_name_first_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ra_first_name" />
+    <EditText android:id="@+id/ra_name_last_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ra_last_name" />
+    <EditText android:id="@+id/resident_name_first_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/resident_first_name" />
+    <EditText android:id="@+id/resident_name_last_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/resident_last_name" />
+    
+    <Spinner android:id="@+id/residence_hall_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    
+    <RadioGroup android:id="@+id/room_side_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <RadioButton android:id="@+id/room_side_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/left" />
+        <RadioButton android:id="@+id/room_side_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/right" />
+    </RadioGroup>
+    
+    <EditText android:id="@+id/room_number_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/room_number"
+        android:inputType="number"/>
+	<Button android:id="@+id/create_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create" />
+</LinearLayout>

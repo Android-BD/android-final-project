@@ -1,0 +1,46 @@
+package com.playground;
+
+import java.util.List;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+
+public class MainActivity extends FragmentActivity {
+	
+	private MyPageAdapter mPageAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        List<Fragment> fragments = getFragments();
+        mPageAdapter = new MyPageAdapter(getSupportFragmentManager(), fragments);
+        ViewPager pager = (ViewPager)findViewById(R.id.viewpager);
+        pager.setAdapter(mPageAdapter);
+    }
+    
+    class MyPageAdapter extends FragmentPagerAdapter {
+    	private List<Fragment> fragments;
+    	
+    	public MyPageAdapter(FragmentManager fm, List<Fragment> fragments) {
+    		super(fm);
+    		this.fragments = fragments;
+    	}
+    	
+		@Override
+		public Fragment getItem(int arg0) {
+			return this.fragment.get(position);
+		}
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+    	
+    }
+}

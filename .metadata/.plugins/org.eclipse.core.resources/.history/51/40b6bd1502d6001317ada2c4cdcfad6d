@@ -1,0 +1,20 @@
+package com.playground;
+
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+
+public class MainActivity extends FragmentActivity {
+	
+	private PageAdapter mPageAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        List<Fragment> fragments = getFragments();
+        mPageAdapter = new MyPageAdapter(getSupportFragmentManager(), fragments);
+        ViewPager pager = (ViewPager)findViewById(R.id.viewpager);
+        pager.setAdapter(mPageAdapter);
+    }
+
+}

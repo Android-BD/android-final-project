@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="residence_halls">
+        <item>Boaz</item>
+        <item>Cockerell-McIntosh</item>
+        <item>Mary Hay</item>
+        <item>McElvaney</item>
+        <item>Morrison-McGinnis</item>
+        <item>Perkins</item>
+        <item>Peyton</item>
+        <item>Shuttles</item>
+        <item>Smith</item>
+        <item>Virginia-Snider</item>	
+    </string-array>
+</resources>
