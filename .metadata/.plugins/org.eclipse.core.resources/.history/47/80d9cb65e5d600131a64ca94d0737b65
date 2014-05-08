@@ -72,7 +72,6 @@ public class FormElementFragment extends Fragment {
 				Intent intent = new Intent(getActivity(), DamageInput.class);
 				intent.putExtra(DAMAGE_NAME_KEY, mCatDamages.get(position).NAME);
 				intent.putExtra(DAMAGE_DESCRIPTION_KEY, mCatDamages.get(position).DESCRIPTION);
-				mCatDamages.remove(position);
 				startActivityForResult(intent, DAMAGE_REQUEST_CODE);
 			}
 		});

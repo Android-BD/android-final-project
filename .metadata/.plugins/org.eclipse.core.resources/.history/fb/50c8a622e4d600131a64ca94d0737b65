@@ -30,16 +30,11 @@ public class DamageInput extends Activity {
 		mDescriptionView = (EditText)findViewById(R.id.damage_description);
 	    
 	    Intent intent = getIntent();
-	    if (intent.hasExtra(FormElementFragment.DAMAGE_NAME_KEY)) {
-	    	String name = intent.getStringExtra(FormElementFragment.DAMAGE_NAME_KEY);
-	    	mNameView.setText(name);
-	    	Log.d("LWO","Received: "+name);
-	    }
-	    if (intent.hasExtra(FormElementFragment.DAMAGE_DESCRIPTION_KEY)) {
-	    	String description = intent.getStringExtra(FormElementFragment.DAMAGE_DESCRIPTION_KEY);
-	    	mDescriptionView.setText(description);
-	    	Log.d("LWO","Received: "+description);
-	    }
+	    String name = intent.getStringExtra(FormElementFragment.DAMAGE_NAME_KEY);
+	    String description = intent.getStringExtra(FormElementFragment.DAMAGE_DESCRIPTION_KEY);
+	    
+	    mNameView.setText(name);
+	    mDescriptionView.setText(name);
 	    
 	    mSaveButton = (Button)findViewById(R.id.damage_save_button);
 	    mSaveButton.setOnClickListener(new View.OnClickListener() {

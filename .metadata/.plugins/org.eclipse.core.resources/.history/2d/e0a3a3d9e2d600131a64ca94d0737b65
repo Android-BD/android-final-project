@@ -21,9 +21,6 @@ import android.widget.TextView;
 public class FormElementFragment extends Fragment {
 	public static final String TITLE_KEY = "TITLE_KEY";
 	public static final String DESCRIPTION_KEY = "DESCRIPTION_KEY";
-	public static final String DAMAGE_NAME_KEY = "DAMAGE_NAME";
-	public static final String DAMAGE_DESCRIPTION_KEY = "DAMAGE_DESCRIPTION";
-	
 	public static final int DAMAGE_REQUEST_CODE = 1276;
 	private static ArrayList<Damage> mDamages;
 	private ArrayList<Damage> mCatDamages;
@@ -69,11 +66,6 @@ public class FormElementFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Log.d("LWO",""+position);
-				Intent intent = new Intent(getActivity(), DamageInput.class);
-				intent.putExtra(DAMAGE_NAME_KEY, mCatDamages.get(position).NAME);
-				intent.putExtra(DAMAGE_DESCRIPTION_KEY, mCatDamages.get(position).DESCRIPTION);
-				mCatDamages.remove(position);
-				startActivityForResult(intent, DAMAGE_REQUEST_CODE);
 			}
 		});
 		
